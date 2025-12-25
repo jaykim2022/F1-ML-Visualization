@@ -24,4 +24,25 @@ current_drivers = ["Verstappen", "Piastri", "Norris", "Leclerc",
 
 current_drivers_df = validNumbers[validNumbers["surname"].isin(current_drivers)]
 
-print(current_drivers_df.head(20))
+#print(current_drivers_df.head(20))
+#Missing Hadjar, Bortoleto, Antonelli b/c they are rookies
+
+results = pd.read_csv('data/results.csv')
+
+#print(results.head())
+
+results.drop(['positionText'], axis=1, inplace=True)
+results.drop(['resultId'], axis=1, inplace=True)
+
+#print(results.dtypes)
+
+numerical_dataset = results.select_dtypes(include=['number'])
+
+plt.figure(figsize=(12,6))
+sns.heatmap(numerical_dataset.corr(),
+            cmap = 'BrBG',
+            fmt = '.2f',
+            linewidths = 2,
+            annot = True)
+
+plt.show()
