@@ -23,6 +23,7 @@ current_drivers = ["Verstappen", "Piastri", "Norris", "Leclerc",
                    "Hadjar", "Lawson", "Gasly", "Colapinto"]
 
 current_drivers_df = validNumbers[validNumbers["surname"].isin(current_drivers)]
+print(current_drivers_df.head(20))
 
 #print(current_drivers_df.head(20))
 #Missing Hadjar, Bortoleto, Antonelli b/c they are rookies
@@ -45,4 +46,8 @@ sns.heatmap(numerical_dataset.corr(),
             linewidths = 2,
             annot = True)
 
-plt.show()
+#plt.show()
+
+current_drivers_results = results[results["driverId"].isin(current_drivers_df["driverId"])]
+
+print(current_drivers_results.shape)
